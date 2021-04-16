@@ -1,0 +1,1 @@
+execute_script C:\Users\nik23\OneDrive\Рабочий стол\Уник\Программирование\5_lab_v3\json\script2.txt

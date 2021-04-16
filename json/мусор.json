@@ -1,0 +1,173 @@
+ok = false;
+        while (!ok) {
+            System.out.print("Введите поле name (Тип String): ");
+            s = reader.nextLine();
+            ok = product.setName(s);
+        }
+
+        Coordinates coordinates = new Coordinates();
+        ok = false;
+        while (!ok) {
+            System.out.print("Введите поле coordinates.x (Тип Long): ");
+            try {
+                try {
+                    l = Long.parseLong(reader.nextLine());
+                    ok = coordinates.setX(l);
+
+                } catch (NullPointerException e) {
+                    System.out.println("Неверный ввод. Поле должно product.coordinates.x быть не равно null.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка ввода. Поле coordinates.x должно иметь типа Long ");
+            }
+        }
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле coordinates.y (Тип Double): ");
+                d = Double.parseDouble(reader.nextLine());
+                ok = coordinates.setY(d);
+            } catch (NullPointerException | NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле должно product.coordinates.y быть не равно null.");
+            }
+        }
+        product.setCoordinates(coordinates);
+
+        product.setCreationDate();
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле price (тип double): ");
+
+                d_ = Double.parseDouble(reader.nextLine());
+                ok = product.setPrice(d_);
+            } catch (NullPointerException | NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле price должно быть типа double и не может быть null.");
+            }
+        }
+
+        ok = false;
+        while (!ok) {
+            System.out.print("Введите поле partNumber (тип String): ");
+            s = reader.nextLine();
+            ok = product.setPartNumber(s);
+        }
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле manufactureCost (тип double): ");
+                d_ = Double.parseDouble(reader.nextLine());
+                product.setManufactureCost(d_);
+                ok = true;
+            } catch (NullPointerException | NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле manufactureCost должно быть типа double и не может быть null.");
+            }
+        }
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле unitOfMeasure (тип UnitOfMeasure [");
+                for (UnitOfMeasure i : UnitOfMeasure.values()) {
+                    System.out.print(i + " ");
+                }
+                System.out.print("]): ");
+                s = reader.nextLine().toUpperCase();
+                UnitOfMeasure unitOfMeasure = UnitOfMeasure.valueOf(s);
+                ok = product.setUnitOfMeasure(unitOfMeasure.toString());
+            } catch (IllegalArgumentException | NullPointerException e) {
+                System.out.println("Неверный ввод. Поле unitOfMeasure должно иметь тип UnitOfMeasure и не должно быть равно null.");
+            }
+        }
+
+        Person owner = new Person();
+
+        ok = false;
+        while (!ok) {
+            System.out.print("Введите поле owner.name (тип String): ");
+            name = reader.nextLine();
+            ok = owner.setName(name);
+        }
+
+        ok = false;
+        while (!ok) {
+            System.out.print("Введите поле owner.passportID (тип String): ");
+            passportID = reader.nextLine();
+            ok = owner.setPassportID(passportID, collection);
+        }
+
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле owner.hairColor (тип Color [");
+                for (Color i : Color.values()) {
+                    System.out.print(i + " ");
+                }
+                System.out.print("]): ");
+
+                s = reader.nextLine().toUpperCase();
+                owner.setHairColor(s);
+                ok = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Неверный ввод. Поле owner.hairColor должно быть типа Color");
+            }
+        }
+
+        Location location = new Location();
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле owner.location.x (тип long): ");
+                l_ = Long.parseLong(reader.nextLine());
+                location.setX(l);
+                ok = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле owner.location.x должно быть типа long.");
+            }
+        }
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле owner.location.y (тип double): ");
+                d_ = Double.parseDouble(reader.nextLine());
+                location.setY(d_);
+                ok = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле owner.location.y должно быть типа double.");
+            }
+        }
+
+
+        ok = false;
+        while (!ok) {
+            try {
+                System.out.print("Введите поле owner.location.z (тип Float): ");
+                f = Float.parseFloat(reader.nextLine());
+                ok = location.setZ(f);
+            } catch (NullPointerException | NumberFormatException e) {
+                System.out.println("Неверный ввод. Поле owner.location.z должно быть типа Float не должно быть равно null");
+            }
+        }
+
+        ok = false;
+        while (!ok) {
+            System.out.print("Введите поле owner.location.name (тип String): ");
+            s = reader.nextLine();
+            ok = location.setName(s);
+        }
+        try {
+            owner.setLocation(location);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Неверный ввод. Поле owner.location должно быть типа Location и не равно null");
+        }
+
+        try {
+            product.setOwner(owner);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Неверный ввод. Поле owner должно быть типа Person и не равно null");
+        }
